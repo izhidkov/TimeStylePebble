@@ -25,30 +25,25 @@ char currentDayNum[5];
 char currentMonth[8];
 
 // the widgets
-SidebarWidget batteryMeterWidget;
 int BatteryMeter_getHeight();
 void BatteryMeter_draw(GContext* ctx, int yPosition);
 
-SidebarWidget emptyWidget;
-int EmptyWidget_getHeight();
-void EmptyWidget_draw(GContext* ctx, int yPosition);
-
-SidebarWidget dateWidget;
 int DateWidget_getHeight();
 void DateWidget_draw(GContext* ctx, int yPosition);
-
+SidebarWidget batteryMeterWidget;
+SidebarWidget dateWidget;
+SidebarWidget healthWidget;
+SidebarWidget heartRateWidget;
 
   GDrawCommandImage* sleepImage;
   GDrawCommandImage* stepsImage;
   GDrawCommandImage* heartImage;
 
-  SidebarWidget healthWidget;
   int Health_getHeight();
   void Health_draw(GContext* ctx, int yPosition);
   void Sleep_draw(GContext* ctx, int yPosition);
   void Steps_draw(GContext* ctx, int yPosition);
 
-  SidebarWidget heartRateWidget;
   int HeartRate_getHeight();
   void HeartRate_draw(GContext* ctx, int yPosition);
 
@@ -70,9 +65,6 @@ void SidebarWidgets_init() {
   // set up widgets' function pointers correctly
   batteryMeterWidget.getHeight = BatteryMeter_getHeight;
   batteryMeterWidget.draw      = BatteryMeter_draw;
-
-  emptyWidget.getHeight = EmptyWidget_getHeight;
-  emptyWidget.draw      = EmptyWidget_draw;
 
   dateWidget.getHeight = DateWidget_getHeight;
   dateWidget.draw      = DateWidget_draw;
@@ -121,33 +113,6 @@ void SidebarWidgets_updateTime(struct tm* timeInfo) {
 
 }
 
-/* Sidebar Widget Selection */
-SidebarWidget getSidebarWidgetByType(SidebarWidgetType type) {
-  switch(type) {
-    case BATTERY_METER:
-      return batteryMeterWidget;
-      break;
-    case DATE:
-      return dateWidget;
-      break;
-      case HEALTH:
-        return healthWidget;
-      case HEARTRATE:
-        return heartRateWidget;
-    default:
-      return emptyWidget;
-      break;
-  }
-}
-
-/********** functions for the empty widget **********/
-int EmptyWidget_getHeight() {
-  return 0;
-}
-
-void EmptyWidget_draw(GContext* ctx, int yPosition) {
-  return;
-}
 
 /********** functions for the battery meter widget **********/
 

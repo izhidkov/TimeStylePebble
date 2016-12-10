@@ -1,6 +1,5 @@
 #pragma once
 #include <pebble.h>
-#include "sidebar_widgets.h"
 
 typedef struct {
   // color settings
@@ -8,11 +7,6 @@ typedef struct {
   GColor timeBgColor;
   GColor sidebarColor;
   GColor sidebarTextColor;
-
-  // sidebar settings
-  SidebarWidgetType widgets[3];
-
-  // TODO: these shouldn't be dynamic
   GColor iconFillColor;
   GColor iconStrokeColor;
 } Settings;

@@ -4,7 +4,6 @@
 #include "settings.h"
 #include "languages.h"
 #include "sidebar.h"
-#include "sidebar_widgets.h"
 
 #define V_PADDING_DEFAULT 8
 #define V_PADDING_COMPACT 4
@@ -78,29 +77,24 @@ void updateRectSidebar(Layer *l, GContext* ctx) {
 
   bool showAutoBattery = isAutoBatteryShown();
 
-  SidebarWidget displayWidgets[3];
-
-  displayWidgets[0] = getSidebarWidgetByType(globalSettings.widgets[0]);
-  displayWidgets[1] = getSidebarWidgetByType(globalSettings.widgets[1]);
-  displayWidgets[2] = getSidebarWidgetByType(globalSettings.widgets[2]);
-
   // do we need to replace a widget?
   // if so, determine which widget should be replaced
+  SidebarWidget midWidget = heartRateWidget;
   if(showAutoBattery) {
 
-      displayWidgets[1] = getSidebarWidgetByType(BATTERY_METER);
+      midWidget = batteryMeterWidget;
   }
 
 
   // calculate the three widget positions
   int topWidgetPos = V_PADDING_DEFAULT;
-  int lowerWidgetPos = bounds.size.h - V_PADDING_DEFAULT - displayWidgets[2].getHeight();
+  int lowerWidgetPos = bounds.size.h - V_PADDING_DEFAULT - healthWidget.getHeight();
 
   // vertically center the middle widget using MATH
-  int middleWidgetPos = ((lowerWidgetPos - displayWidgets[1].getHeight()) + (topWidgetPos + displayWidgets[0].getHeight())) / 2;
+  int middleWidgetPos = ((lowerWidgetPos - midWidget.getHeight()) + (topWidgetPos + dateWidget.getHeight())) / 2;
 
   // draw the widgets
-  displayWidgets[0].draw(ctx, topWidgetPos);
-    displayWidgets[1].draw(ctx, middleWidgetPos);
-  displayWidgets[2].draw(ctx, lowerWidgetPos);
+  dateWidget.draw(ctx, topWidgetPos);
+    midWidget.draw(ctx, middleWidgetPos);
+  healthWidget.draw(ctx, lowerWidgetPos);
 }

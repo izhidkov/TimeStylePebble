@@ -11,11 +11,6 @@ void Settings_init() {
     globalSettings.timeColor      = GColorWhite;
     globalSettings.sidebarColor   = GColorBlack;
 
-  // set the default widgets
-  globalSettings.widgets[0] = DATE;
-  globalSettings.widgets[1] = HEARTRATE;
-  globalSettings.widgets[2] = HEALTH;
-
     globalSettings.iconFillColor = GColorBlack;
     globalSettings.iconStrokeColor = globalSettings.sidebarTextColor; // exciting
 }
