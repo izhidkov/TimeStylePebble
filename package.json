@@ -1,5 +1,5 @@
 {
-  "name": "hardcode-pebble",
+  "name": "hardcode3-pebble",
   "author": "izhidkov",
   "version": "6.11.0",
   "keywords": [
@@ -10,8 +10,8 @@
     "pebble-fctx": "^1.6.0"
   },
   "pebble": {
-    "displayName": "Hardcode",
-    "uuid": "4368ffa4-f0fb-4823-90be-f754b076bdaa",
+    "displayName": "HardcodeLeco",
+    "uuid": "4368ffa4-f0fb-4823-90be-f754b076bddd",
     "sdkVersion": "3",
     "targetPlatforms": [
       "diorite"
@@ -34,13 +34,8 @@
           "type": "bitmap"
         },
         {
-          "file": "fonts/AvenirNextRegular.ffont",
-          "name": "AVENIR_REGULAR_FFONT",
-          "type": "raw"
-        },
-        {
-          "file": "data/DISCONNECTED.pdc",
-          "name": "DISCONNECTED",
+          "file": "fonts/LECO1976-Regular.ffont",
+          "name": "LECO_REGULAR_FFONT",
           "type": "raw"
         },
         {
