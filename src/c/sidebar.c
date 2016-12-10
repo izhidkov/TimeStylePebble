@@ -1,25 +1,24 @@
-#include <pebble.h>
+#include "sidebar.h"
 #include <ctype.h>
 #include <math.h>
+#include <pebble.h>
 #include "settings.h"
-#include "sidebar.h"
 
 #define V_PADDING_DEFAULT 8
 #define V_PADDING_COMPACT 4
 
 // "private" functions
 // layer update callbacks
-void updateRectSidebar(Layer *l, GContext* ctx);
-
+void updateRectSidebar(Layer* l, GContext* ctx);
 
 Layer* sidebarLayer;
-
 
 void Sidebar_init(Window* window) {
   // init the sidebar layer
   GRect bounds;
   GRect scr_rect = layer_get_bounds(window_get_root_layer(window));
-bounds = GRect(scr_rect.size.w - ACTION_BAR_WIDTH, 0, ACTION_BAR_WIDTH, scr_rect.size.h);
+  bounds = GRect(scr_rect.size.w - ACTION_BAR_WIDTH, 0, ACTION_BAR_WIDTH,
+                 scr_rect.size.h);
 
   // init the widgets
   SidebarWidgets_init();
@@ -27,7 +26,7 @@ bounds = GRect(scr_rect.size.w - ACTION_BAR_WIDTH, 0, ACTION_BAR_WIDTH, scr_rect
   sidebarLayer = layer_create(bounds);
   layer_add_child(window_get_root_layer(window), sidebarLayer);
 
-    layer_set_update_proc(sidebarLayer, updateRectSidebar);
+  layer_set_update_proc(sidebarLayer, updateRectSidebar);
 }
 
 void Sidebar_deinit() {
@@ -37,10 +36,8 @@ void Sidebar_deinit() {
 }
 
 void Sidebar_redraw() {
-
   // redraw the layer
   layer_mark_dirty(sidebarLayer);
-
 }
 
 void Sidebar_updateTime(struct tm* timeInfo) {
@@ -51,17 +48,16 @@ void Sidebar_updateTime(struct tm* timeInfo) {
 }
 
 bool isAutoBatteryShown() {
-    BatteryChargeState chargeState = battery_state_service_peek();
+  BatteryChargeState chargeState = battery_state_service_peek();
 
-      if(chargeState.charge_percent <= 10 || chargeState.is_charging) {
-        return true;
-      }
+  if (chargeState.charge_percent <= 10 || chargeState.is_charging) {
+    return true;
+  }
 
   return false;
 }
 
-
-void updateRectSidebar(Layer *l, GContext* ctx) {
+void updateRectSidebar(Layer* l, GContext* ctx) {
   GRect bounds = layer_get_unobstructed_bounds(l);
 
   // this ends up being zero on every rectangular platform besides emery
@@ -79,21 +75,22 @@ void updateRectSidebar(Layer *l, GContext* ctx) {
   // do we need to replace a widget?
   // if so, determine which widget should be replaced
   SidebarWidget midWidget = heartRateWidget;
-  if(showAutoBattery) {
-
-      midWidget = batteryMeterWidget;
+  if (showAutoBattery) {
+    midWidget = batteryMeterWidget;
   }
-
 
   // calculate the three widget positions
   int topWidgetPos = V_PADDING_DEFAULT;
-  int lowerWidgetPos = bounds.size.h - V_PADDING_DEFAULT - healthWidget.getHeight();
+  int lowerWidgetPos =
+      bounds.size.h - V_PADDING_DEFAULT - healthWidget.getHeight();
 
   // vertically center the middle widget using MATH
-  int middleWidgetPos = ((lowerWidgetPos - midWidget.getHeight()) + (topWidgetPos + dateWidget.getHeight())) / 2;
+  int middleWidgetPos = ((lowerWidgetPos - midWidget.getHeight()) +
+                         (topWidgetPos + dateWidget.getHeight())) /
+                        2;
 
   // draw the widgets
   dateWidget.draw(ctx, topWidgetPos);
-    midWidget.draw(ctx, middleWidgetPos);
+  midWidget.draw(ctx, middleWidgetPos);
   healthWidget.draw(ctx, lowerWidgetPos);
 }

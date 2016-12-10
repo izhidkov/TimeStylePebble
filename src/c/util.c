@@ -1,6 +1,5 @@
-#include <pebble.h>
 #include "util.h"
-
+#include <pebble.h>
 
 bool recolor_iterator_cb(GDrawCommand *command, uint32_t index, void *context) {
   GColor *colors = (GColor *)context;
@@ -11,7 +10,8 @@ bool recolor_iterator_cb(GDrawCommand *command, uint32_t index, void *context) {
   return true;
 }
 
-void gdraw_command_image_recolor(GDrawCommandImage *img, GColor fill_color, GColor stroke_color) {
+void gdraw_command_image_recolor(GDrawCommandImage *img, GColor fill_color,
+                                 GColor stroke_color) {
   GColor colors[2];
   colors[0] = fill_color;
   colors[1] = stroke_color;

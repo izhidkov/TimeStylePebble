@@ -3,7 +3,6 @@
 
 extern int SidebarWidgets_xOffset;
 
-
 typedef struct {
   /*
    * Returns the pixel height of the widget, taking into account all current

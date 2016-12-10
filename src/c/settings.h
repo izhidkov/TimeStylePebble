@@ -13,5 +13,4 @@ typedef struct {
 
 extern Settings globalSettings;
 
-
 void Settings_init();

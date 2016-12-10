@@ -1,8 +1,8 @@
-#include <pebble.h>
-#include <pebble-fctx/fctx.h>
-#include <pebble-fctx/fpath.h>
-#include <pebble-fctx/ffont.h>
 #include "clock_area.h"
+#include <pebble-fctx/fctx.h>
+#include <pebble-fctx/ffont.h>
+#include <pebble-fctx/fpath.h>
+#include <pebble.h>
 #include "settings.h"
 
 #define ROUND_VERTICAL_PADDING 15
@@ -21,21 +21,21 @@ GRect screen_rect;
 
 // "private" functions
 void update_fonts() {
-        hours_font = avenir;
-        minutes_font = avenir;
+  hours_font = avenir;
+  minutes_font = avenir;
 }
 
-void update_clock_area_layer(Layer *l, GContext* ctx) {
+void update_clock_area_layer(Layer* l, GContext* ctx) {
   // check layer bounds
   GRect bounds = layer_get_unobstructed_bounds(l);
 
-  // initialize FCTX, the fancy 3rd party drawing library that all the cool kids use
+  // initialize FCTX, the fancy 3rd party drawing library that all the cool kids
+  // use
   FContext fctx;
 
   fctx_init_context(&fctx, ctx);
   fctx_set_color_bias(&fctx, 0);
   fctx_set_fill_color(&fctx, globalSettings.timeColor);
-
 
   // calculate font size
   int font_size = 4 * bounds.size.h / 7;
@@ -45,7 +45,7 @@ void update_clock_area_layer(Layer *l, GContext* ctx) {
   int h_adjust = 0;
   int v_adjust = 0;
 
-      h_adjust -= ACTION_BAR_WIDTH / 2 + 1;
+  h_adjust -= ACTION_BAR_WIDTH / 2 + 1;
 
   FPoint time_pos;
   fctx_begin_fill(&fctx);
@@ -56,17 +56,18 @@ void update_clock_area_layer(Layer *l, GContext* ctx) {
   time_pos.x = INT_TO_FIXED(bounds.size.w / 2 + h_adjust);
   time_pos.y = INT_TO_FIXED(v_padding + v_adjust);
   fctx_set_offset(&fctx, time_pos);
-  fctx_draw_string(&fctx, time_hours, hours_font, GTextAlignmentCenter, FTextAnchorTop);
+  fctx_draw_string(&fctx, time_hours, hours_font, GTextAlignmentCenter,
+                   FTextAnchorTop);
 
-  //draw minutes
+  // draw minutes
   time_pos.y = INT_TO_FIXED(bounds.size.h - v_padding + v_adjust);
   fctx_set_offset(&fctx, time_pos);
-  fctx_draw_string(&fctx, time_minutes, minutes_font, GTextAlignmentCenter, FTextAnchorBaseline);
+  fctx_draw_string(&fctx, time_minutes, minutes_font, GTextAlignmentCenter,
+                   FTextAnchorBaseline);
   fctx_end_fill(&fctx);
 
   fctx_deinit_context(&fctx);
 }
-
 
 void ClockArea_init(Window* window) {
   // record the screen size, since we NEVER GET IT AGAIN
@@ -81,7 +82,7 @@ void ClockArea_init(Window* window) {
   layer_set_update_proc(clock_area_layer, update_clock_area_layer);
 
   // allocate fonts
-  avenir =      ffont_create_from_resource(RESOURCE_ID_AVENIR_REGULAR_FFONT);
+  avenir = ffont_create_from_resource(RESOURCE_ID_AVENIR_REGULAR_FFONT);
   // select fonts based on settings
   update_fonts();
 }
@@ -100,9 +101,8 @@ void ClockArea_redraw() {
 }
 
 void ClockArea_update_time(struct tm* time_info) {
-
   // hours
-    strftime(time_hours, sizeof(time_hours), "%k", time_info);
+  strftime(time_hours, sizeof(time_hours), "%k", time_info);
 
   // minutes
   strftime(time_minutes, sizeof(time_minutes), "%M", time_info);
