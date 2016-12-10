@@ -3,7 +3,6 @@
 #include "health.h"
 #include "settings.h"
 #include "sidebar.h"
-#include "util.h"
 
 // windows and layers
 static Window *mainWindow;
