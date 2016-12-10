@@ -1,67 +1,30 @@
 {
-  "name": "timestyle-pebble",
-  "author": "Freakified",
+  "name": "hardcode-pebble",
+  "author": "izhidkov",
   "version": "6.11.0",
   "keywords": [
     "pebble-watchface"
   ],
   "private": true,
   "dependencies": {
-    "pebble-fctx": "^1.4.0"
+    "pebble-fctx": "^1.6.0"
   },
   "pebble": {
-    "displayName": "TimeStyle",
+    "displayName": "Hardcode",
     "uuid": "4368ffa4-f0fb-4823-90be-f754b076bdaa",
     "sdkVersion": "3",
-    "enableMultiJS": true,
     "targetPlatforms": [
-      "basalt",
-      "chalk",
-      "diorite",
-      "emery"
+      "diorite"
     ],
     "capabilities": [
       "location",
-      "health",
-      "configurable"
+      "health"
     ],
     "watchapp": {
       "onlyShownOnCommunication": false,
       "hiddenApp": false,
       "watchface": true
     },
-    "messageKeys": [
-      "WeatherCondition",
-      "WeatherTemperature",
-      "WeatherForecastCondition",
-      "WeatherForecastHighTemp",
-      "WeatherForecastLowTemp",
-      "SettingAltClockName",
-      "SettingAltClockOffset",
-      "SettingDisableAutobattery",
-      "SettingBluetoothVibe",
-      "SettingDisconnectIcon",
-      "SettingClockFontId",
-      "SettingColorBG",
-      "SettingColorSidebar",
-      "SettingColorTime",
-      "SettingDecimalSep",
-      "SettingDisableWeather",
-      "SettingHealthUseDistance",
-      "SettingHealthUseRestfulSleep",
-      "SettingHourlyVibe",
-      "SettingLanguageID",
-      "SettingShowBatteryPct",
-      "SettingShowLeadingZero",
-      "SettingSidebarOnLeft",
-      "SettingSidebarTextColor",
-      "SettingUseLargeFonts",
-      "SettingUseMetric",
-      "WeatherUseNightIcon",
-      "SettingWidget0ID",
-      "SettingWidget1ID",
-      "SettingWidget2ID"
-    ],
     "resources": {
       "media": [
         {
@@ -71,63 +34,8 @@
           "type": "bitmap"
         },
         {
-          "file": "fonts/LECO1976-Regular.ffont",
-          "name": "LECO_REGULAR_FFONT",
-          "type": "raw"
-        },
-        {
           "file": "fonts/AvenirNextRegular.ffont",
           "name": "AVENIR_REGULAR_FFONT",
-          "type": "raw"
-        },
-        {
-          "file": "fonts/AvenirNextDemiBold.ffont",
-          "name": "AVENIR_BOLD_FFONT",
-          "type": "raw"
-        },
-        {
-          "file": "data/WEATHER_GENERIC.pdc",
-          "name": "WEATHER_GENERIC",
-          "type": "raw"
-        },
-        {
-          "file": "data/THUNDERSTORM.pdc",
-          "name": "WEATHER_THUNDERSTORM",
-          "type": "raw"
-        },
-        {
-          "file": "data/RAINING_AND_SNOWING.pdc",
-          "name": "WEATHER_RAINING_AND_SNOWING",
-          "type": "raw"
-        },
-        {
-          "file": "data/PARTLY_CLOUDY_NIGHT.pdc",
-          "name": "WEATHER_PARTLY_CLOUDY_NIGHT",
-          "type": "raw"
-        },
-        {
-          "file": "data/PARTLY_CLOUDY.pdc",
-          "name": "WEATHER_PARTLY_CLOUDY",
-          "type": "raw"
-        },
-        {
-          "file": "data/LIGHT_SNOW.pdc",
-          "name": "WEATHER_LIGHT_SNOW",
-          "type": "raw"
-        },
-        {
-          "file": "data/LIGHT_RAIN.pdc",
-          "name": "WEATHER_LIGHT_RAIN",
-          "type": "raw"
-        },
-        {
-          "file": "data/HEAVY_SNOW.pdc",
-          "name": "WEATHER_HEAVY_SNOW",
-          "type": "raw"
-        },
-        {
-          "file": "data/HEAVY_RAIN.pdc",
-          "name": "WEATHER_HEAVY_RAIN",
           "type": "raw"
         },
         {
@@ -138,21 +46,6 @@
         {
           "file": "data/DATE_BG.pdc",
           "name": "DATE_BG",
-          "type": "raw"
-        },
-        {
-          "file": "data/CLOUDY_DAY.pdc",
-          "name": "WEATHER_CLOUDY",
-          "type": "raw"
-        },
-        {
-          "file": "data/CLEAR_NIGHT.pdc",
-          "name": "WEATHER_CLEAR_NIGHT",
-          "type": "raw"
-        },
-        {
-          "file": "data/CLEAR_DAY.pdc",
-          "name": "WEATHER_CLEAR_DAY",
           "type": "raw"
         },
         {
@@ -184,6 +77,6 @@
     }
   },
   "devDependencies": {
-    "pebble-fctx-compiler": "^1.1.0"
+    "pebble-fctx-compiler": "^1.2.2"
   }
 }

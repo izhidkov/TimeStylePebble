@@ -1,4 +1,3 @@
-#ifdef PBL_HEALTH
 #include <pebble.h>
 #include "health.h"
 
@@ -6,8 +5,6 @@ static HealthEventCallback s_health_event_callback;
 
 static bool s_sleeping;
 static HealthValue s_sleep_seconds;
-static HealthValue s_restful_sleep_seconds;
-static HealthValue s_distance_walked;
 static HealthValue s_steps;
 static HealthValue s_heart_rate;
 
@@ -32,11 +29,9 @@ static void health_event_handler(HealthEventType event, void *context) {
         HealthActivityMask mask = health_service_peek_current_activities();
         s_sleeping = (mask & HealthActivitySleep) || (mask & HealthActivityRestfulSleep);
         s_sleep_seconds = get_health_value_sum_today(HealthMetricSleepSeconds);
-        s_restful_sleep_seconds = get_health_value_sum_today(HealthMetricSleepRestfulSeconds);
     } else if (event == HealthEventMovementUpdate) {
         HealthActivityMask mask = health_service_peek_current_activities();
         s_sleeping = (mask & HealthActivitySleep) || (mask & HealthActivityRestfulSleep);
-        s_distance_walked = get_health_value_sum_today(HealthMetricWalkedDistanceMeters);
         s_steps = get_health_value_sum_today(HealthMetricStepCount);
     } else if (event == HealthEventHeartRateUpdate) {
         HealthServiceAccessibilityMask hr = health_service_metric_accessible(HealthMetricHeartRateBPM, time(NULL), time(NULL));
@@ -69,14 +64,6 @@ HealthValue Health_getSleepSeconds(void) {
     return s_sleep_seconds;
 }
 
-HealthValue Health_getRestfulSleepSeconds(void) {
-    return s_restful_sleep_seconds;
-}
-
-HealthValue Health_getDistanceWalked(void) {
-    return s_distance_walked;
-}
-
 HealthValue Health_getSteps(void) {
     return s_steps;
 }
@@ -84,5 +71,3 @@ HealthValue Health_getSteps(void) {
 HealthValue Health_getHeartRate(void) {
     return s_heart_rate;
 }
-
-#endif // PBL_HEALTH

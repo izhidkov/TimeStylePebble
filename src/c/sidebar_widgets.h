@@ -1,17 +1,6 @@
 #pragma once
 #include <pebble.h>
 
-/*
- * "Compact Mode" is a global setting shared by all widgets, which determines
- * whether they should try to reduce their padding. Intended to allow larger
- * widgets to fit when vertical screen space is lacking
- */
-extern bool SidebarWidgets_useCompactMode;
-
-/*
- * A global x offset used for nudging the widgets left and right
- * Included for round support
- */
 extern int SidebarWidgets_xOffset;
 
 /*
@@ -20,17 +9,9 @@ extern int SidebarWidgets_xOffset;
  */
 typedef enum {
   EMPTY                     = 0,
-  BLUETOOTH_DISCONNECT      = 1,
   BATTERY_METER             = 2,
-  ALT_TIME_ZONE             = 3,
   DATE                      = 4,
-  SECONDS                   = 5,
-  WEEK_NUMBER               = 6,
-  WEATHER_CURRENT           = 7,
-  WEATHER_FORECAST_TODAY    = 8,
-  TIME_UNUSED               = 9,
   HEALTH                    = 10,
-  BEATS                     = 11,
   HEARTRATE                 = 12
 } SidebarWidgetType;
 
