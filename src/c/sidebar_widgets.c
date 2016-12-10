@@ -23,7 +23,6 @@ GFont smSidebarFont;
 GFont mdSidebarFont;
 GFont lgSidebarFont;
 GFont currentSidebarFont;
-GFont batteryFont;
 
 char currentDayName[8];
 char currentDayNum[5];
@@ -95,10 +94,7 @@ void SidebarWidgets_deinit() {
   gdraw_command_image_destroy(sleepImage);
 }
 
-void SidebarWidgets_updateFonts() {
-  currentSidebarFont = mdSidebarFont;
-  batteryFont = smSidebarFont;
-}
+void SidebarWidgets_updateFonts() { currentSidebarFont = mdSidebarFont; }
 
 void SidebarWidgets_updateTime(struct tm* timeInfo) {
   // set all the date strings
@@ -189,8 +185,8 @@ void BatteryMeter_draw(GContext* ctx, int yPosition) {
     snprintf(batteryString, sizeof(batteryString), "%d", battery_percent);
 
     graphics_draw_text(
-        ctx, batteryString, batteryFont,
-        GRect(-4 + SidebarWidgets_xOffset, 14 + batteryPositionY, 38, 20),
+        ctx, batteryString, currentSidebarFont,
+        GRect(-4 + SidebarWidgets_xOffset, 16 + batteryPositionY, 38, 20),
         GTextOverflowModeFill, GTextAlignmentCenter, NULL);
   }
 }
@@ -302,7 +298,7 @@ void Steps_draw(GContext* ctx, int yPosition) {
   HealthValue steps = Health_getSteps();
   // format step string
   int yOffset = 13;
-  if (steps < 999) {
+  if (steps < 1000) {
     stepsSidebarFont = lgSidebarFont;
     yOffset = 10;
   }
