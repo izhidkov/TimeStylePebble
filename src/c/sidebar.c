@@ -2,7 +2,6 @@
 #include <ctype.h>
 #include <math.h>
 #include "settings.h"
-#include "languages.h"
 #include "sidebar.h"
 
 #define V_PADDING_DEFAULT 8

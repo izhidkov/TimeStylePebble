@@ -1,12 +1,17 @@
 #include <pebble.h>
 #include <math.h>
 #include "settings.h"
-#include "languages.h"
 #include "util.h"
 #include "health.h"
 #include "sidebar_widgets.h"
 
 int SidebarWidgets_xOffset;
+
+/* day names in many different languages! */
+const char dayNames[7][4] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+
+/* month names in many different languages! */
+const char monthNames[12][4] = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
 
 // sidebar icons
 GDrawCommandImage* dateImage;
